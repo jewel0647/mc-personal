@@ -1,20 +1,38 @@
-import { InputLabel, FormControl, OutlinedInput, InputAdornment, IconButton } from '@mui/material';
+import { useState, ChangeEvent } from 'react';
+import { FormControl, OutlinedInput, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-export default function Search() {
+export interface SearchProps {
+	placeholder: string;
+	onSearch: (keyword: string) => void;
+}
+
+export default function Search({ onSearch }: SearchProps) {
+	const [searchKeyword, setSearchKeyword] = useState('');
+
+	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+		setSearchKeyword(e.target.value);
+		onSearch(e.target.value);
+	};
+
 	return (
 		<FormControl variant='outlined'>
-			<InputLabel htmlFor='search'>Search clients...</InputLabel>
 			<OutlinedInput
-				id='search'
+				id='outlined-adornment-search'
 				endAdornment={
 					<InputAdornment position='end'>
-						<IconButton edge='end'>
-							<SearchIcon />
-						</IconButton>
+						<SearchIcon />
 					</InputAdornment>
 				}
-				label='Search'
+				aria-describedby='outlined-search-text'
+				inputProps={{
+					'aria-label': 'search',
+				}}
+				size='small'
+				placeholder='Search clients...'
+				value={searchKeyword}
+				onChange={handleSearch}
+				sx={{ backgroundColor: 'white' }}
 			/>
 		</FormControl>
 	);
