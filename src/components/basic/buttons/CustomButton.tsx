@@ -7,13 +7,16 @@ export interface CustomButtonProps extends ButtonProps<'button'> {
 }
 
 export default function CustomButton({ variant, label, disabled, color, size, ...rest }: CustomButtonProps) {
-	<Button
-		variant={variant || 'contained'}
-		disabled={disabled || false}
-		color={color || 'primary'}
-		size={size || 'medium'}
-		{...rest}
-	>
-		{label}
-	</Button>;
+	return (
+		<Button
+			variant={variant || 'contained'}
+			disabled={disabled || false}
+			color={color || 'primary'}
+			size={size || 'medium'}
+			sx={{ textTransform: 'none' }}
+			{...rest}
+		>
+			{label}
+		</Button>
+	);
 }
