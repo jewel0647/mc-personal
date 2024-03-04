@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@mui/material';
 
 export interface CustomButtonProps extends ButtonProps<'button'> {
 	label: string;
-	onClick?: () => {};
+	onClick?: () => void;
 }
 
 export default function CustomButton({ variant, label, disabled, color, size, ...rest }: CustomButtonProps) {
